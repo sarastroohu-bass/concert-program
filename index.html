@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>어느 한 베이스의 회상록 - 오재석 독창회</title>
     <style>
-        /* 기본 폰트 설정 (Pretendard 또는 본고딕 권장) */
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/copyleft/pretendard-gov.css');
 
         :root {
             --main-bg: #ffffff;
-            --accent-color: #B2452B; /* 포스터의 오렌지-레드 포인트 컬러 */
-            --text-dark: #222222;
-            --text-gray: #666666;
-            --light-gray: #f2f2f2;
-            --border-color: #dddddd;
+            --accent-color: #B2452B; 
+            --text-dark: #1a1a1a;
+            --text-gray: #555555;
+            --light-gray: #f8f8f8;
+            --border-color: #eeeeee;
         }
 
         body {
@@ -28,145 +27,111 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 25px;
         }
 
-        /* 헤더 디자인: 포스터의 상단 레이아웃 반영 */
+        /* 헤더 */
         header {
-            border-bottom: 2px solid var(--text-dark);
-            padding-bottom: 40px;
+            border-bottom: 3px solid var(--text-dark);
+            padding-bottom: 30px;
             margin-bottom: 60px;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
         }
 
-        .date-info {
-            font-size: 80px;
-            font-weight: 800;
-            line-height: 1;
-            letter-spacing: -2px;
-        }
+        .date-info { font-size: 70px; font-weight: 800; line-height: 1; letter-spacing: -3px; }
+        .title-info { text-align: right; }
+        .title-info h1 { font-size: 28px; margin: 0; color: var(--accent-color); font-weight: 700; }
+        .title-info p { font-size: 18px; margin: 5px 0 0; }
 
-        .title-info {
-            text-align: right;
-        }
-
-        .title-info h1 {
-            font-size: 24px;
-            margin: 0;
-            color: var(--accent-color);
-            font-weight: 700;
-        }
-
-        .title-info p {
-            font-size: 18px;
-            margin: 5px 0 0;
-            font-weight: 400;
-        }
-
-        /* 머리말 섹션: 회색 박스와 세로선 포인트 */
-        .preface {
-            position: relative;
-            padding: 40px;
-            background-color: var(--light-gray);
+        /* 프로필 섹션 */
+        .profile-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
             margin-bottom: 80px;
         }
 
-        .preface::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 20px;
-            bottom: 20px;
-            width: 4px;
-            background-color: var(--text-dark);
+        .profile-item img {
+            width: 100%;
+            height: auto;
+            filter: grayscale(100%);
+            margin-bottom: 20px;
         }
 
-        .preface p {
-            margin-bottom: 20px;
+        .profile-name {
+            font-size: 20px;
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .profile-text {
+            font-size: 14px;
+            color: var(--text-gray);
             text-align: justify;
         }
 
-        /* 곡 소개 섹션 */
-        .program-section {
-            margin-bottom: 100px;
-        }
-
-        .program-item {
-            margin-bottom: 80px;
-            border-left: 1px solid var(--border-color);
-            padding-left: 30px;
-        }
-
-        .program-header {
-            margin-bottom: 25px;
-        }
-
-        .program-header h2 {
-            font-size: 22px;
-            color: var(--accent-color);
-            margin-bottom: 5px;
-        }
-
-        .composer {
-            font-size: 16px;
-            color: var(--text-gray);
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .commentary {
-            font-size: 15px;
-            color: var(--text-dark);
-            margin-bottom: 30px;
-            background: #fafafa;
-            padding: 20px;
-            border-radius: 4px;
-        }
-
-        /* 가사 해석 스타일 */
-        .lyrics-box {
-            border-top: 1px dashed var(--border-color);
+        /* 섹션 구분선 */
+        .section-divider {
+            text-align: center;
+            margin: 100px 0;
+            font-weight: 300;
+            letter-spacing: 10px;
+            color: #ccc;
+            border-top: 1px solid #eee;
             padding-top: 20px;
         }
 
-        .lyrics-title {
-            font-weight: 700;
-            font-size: 14px;
-            color: var(--text-gray);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
+        /* 머리말 */
+        .preface {
+            padding: 50px;
+            background-color: var(--light-gray);
+            margin-bottom: 100px;
+            font-size: 16px;
+            border-left: 5px solid var(--accent-color);
         }
 
-        .lyrics-title::after {
-            content: '';
-            flex-grow: 1;
-            height: 1px;
-            background: var(--border-color);
-            margin-left: 10px;
+        /* 곡 섹션 */
+        .program-item { margin-bottom: 120px; }
+        .program-header { margin-bottom: 30px; }
+        .program-header .composer { font-size: 15px; color: var(--text-gray); font-weight: 600; letter-spacing: 2px; }
+        .program-header h2 { font-size: 24px; color: var(--accent-color); margin: 5px 0; }
+        
+        .commentary {
+            font-size: 16px;
+            margin-bottom: 40px;
+            color: #333;
+            padding-left: 20px;
+            border-left: 1px solid #ddd;
         }
 
-        .lyrics-content {
-            font-size: 15px;
-            color: #444;
-            line-height: 2;
-        }
-
-        footer {
+        /* 가사 및 대사 */
+        .lyrics-box { background: #fdfdfd; padding: 30px; border: 1px solid #f0f0f0; }
+        .lyrics-title { font-weight: 700; font-size: 13px; color: #999; margin-bottom: 20px; text-transform: uppercase; }
+        .lyrics-content { font-size: 15px; color: #444; }
+        
+        .role-name { font-weight: 700; color: var(--accent-color); margin-top: 15px; display: block; }
+        
+        /* 인터미션 */
+        .intermission {
+            background: #1a1a1a;
+            color: #fff;
             text-align: center;
-            padding: 40px;
-            font-size: 14px;
-            color: var(--text-gray);
-            border-top: 1px solid var(--light-gray);
+            padding: 15px;
+            letter-spacing: 5px;
+            margin: 80px 0;
         }
 
-        @media (max-width: 600px) {
-            .date-info { font-size: 40px; }
-            .preface { padding: 20px; }
+        footer { text-align: center; padding: 60px; color: #aaa; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .profile-container { grid-template-columns: 1fr; }
+            .date-info { font-size: 50px; }
         }
     </style>
 </head>
@@ -177,46 +142,44 @@
         <div class="date-info">26.5.8</div>
         <div class="title-info">
             <h1>어느 한 베이스의 회상록</h1>
-            <p>베이스 오재석 독창회</p>
+            <p>Bass Jaeseok Oh Recital</p>
         </div>
     </header>
 
+    <section class="profile-container">
+        <div class="profile-item">
+            <img src="IMG_75402.jpg" alt="Bass 오재석">
+            <div class="profile-name">Bass 오재석</div>
+            <div class="profile-text">
+                중앙대학교 음악대학 성악과 졸업 후 독일 함부르크 국립음대(HfMT) 석사 및 브레멘 국립음대(HfK) 최고연주자과정을 졸업하였다. 독일 브레멘 시립극장, 킬 시립극장 전속 주역 가수를 역임하며 유럽 유수의 무대에서 자라스트로, 바질리오 등 40여 개 이상의 주요 배역으로 출연하였다. 현재 중앙대학교 예술대학 음악학부 교수로 재직하며 후학 양성에 힘쓰고 있다.
+            </div>
+        </div>
+        <div class="profile-item">
+            <div style="height: 450px; background: #eee; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; color: #aaa;">Pianist Photo</div>
+            <div class="profile-name">Piano 류정아</div>
+            <div class="profile-text">
+                서울대학교 음악대학 기악과 졸업 후 독일 베를린 국립예술대학교(UdK)에서 석사 및 최고연주자과정을 최우수 졸업하였다. 다수의 국제 콩쿠르에서 입상하며 전문 연주자로서의 입지를 다졌으며, 현재 중앙대학교, 전남대학교 등에 출강하며 활발한 연주 활동을 이어가고 있다.
+            </div>
+        </div>
+    </section>
+
     <article class="preface">
-        <p>항공우주연구소에서 스마트 무인기 사업을 위한 제안서를 한참 준비하던 2001년 12월 어느 날, 40주를 다 채우지 못했지만 감사하게도 누구보다 건강한 아이가 태어났습니다. 그리고 손가락이 아리도록 추웠던 2002년 1월 말 어느 날, 저는 성악과 편입 시험장 앞에 서 있었습니다. 그렇게 이기적이고 무책임하게 시작된 성악가로서의 순례의 길은 얼마나 이어질지, 어디서 끝날지 모르는 채 25년을 넘는 긴 여정으로 이어집니다.</p>
-
-        <p>가파른 비탈길이 끊임없이 이어지기도 했으나, 이 순례길은 가쁜 숨을 참고 오른 뒤에 선물 같은 절경을 보여주었습니다. 삼켜도 삼켜도 넘어가지 않는 입안 가득한 모래 같은 답답함을 견디다 보면, 목이 찢기는 듯 갈라지는 갈증 끝에 내리는 단비가 있었습니다. 모든 문제를 풀어낼 수 있는 답을 구했던 시간들, 그 답을 찾아낸 것 같아 외치던 희열 뒤에 찾아오는, 그 답이 또 다른 문제의 시작이 되는 무한의 쳇바퀴를 돌며 걸어야 했습니다.</p>
-
-        <p>이 길을 그렇게 걸어오던 어느 날 문득, 이제 한 번쯤은 뒤를 돌아보고, 앞으로의 길을 어떻게 더 나아갈지 생각해 보아야 하지 않겠냐고 스스로에게 묻게 되었고, 결국 그 결과로 이 음악회를 기획하게 되었습니다.</p>
-
-        <p>“운칠기삼”이라는 말이 있습니다. 제가 여기까지 올 수 있었던 데에 저의 능력이라는 것은 3에도 한참을 미치지 못하는 것이었고, 나머지는 모두 적절한 시간과 적당한 장소, 그에 적합한 노력과 준비, 거기에 저를 믿고 지지해 준 모든 주변 사람들 덕이라는 것을 새삼 깨닫게 됩니다. 7이 넘는 기에 포함된 그 모든 운과, 그보다 분명히 더 컸을 주변 사람들의 지지와 마음에 진심으로 감사의 마음을 전합니다.</p>
-
-        <p>오늘 준비한 곡들에 대한 객관적인 설명은, 인공지능 시대에 쉽게 찾아보실 수 있을 것으로 생각합니다. 하지만. 이 연주의 프로그램에는 어떤 인공지능도 대답해 줄 수 없는, 제가 왜 순례길을 돌아보며 이 곡들을 노래하게 되었는지에 대한 극도로 주관적인 이야기를 담고 있습니다. 또한 여기에 포함된 한글 번역도 원문과 심하게 다르지 않은 선에서 극도로 저의 주관적인 의역으로, 그리고 가능하면 관객분들이 이해하시기 쉽게 번역/각색하였습니다.</p>
-
-        <p>어느 한 베이스 가수 지난 25년의 순례길을 돌아보며 의미를 부여한 곡들을 함께 들어주시고 그의 회상을 함께 나눌 수 있으면 합니다. 감사합니다.</p>
+        2001년 12월, 아이의 탄생과 함께 시작된 성악가로서의 순례길이 25년이 되었습니다. 
+        이기적이고 무책임하게 시작되었을지 모를 이 길은 가쁜 숨 끝에 선물 같은 절경을 보여주기도 했고, 
+        입안 가득 모래를 머금은 듯한 답답함을 주기도 했습니다. 
+        이제 그 길을 잠시 돌아보며, 저를 지지해 준 분들에게 감사의 마음을 담아 주관적인 저만의 이야기를 노래하려 합니다.
     </article>
 
     <section class="program-section">
+        
         <div class="program-item">
             <div class="program-header">
                 <div class="composer">W.A. Mozart</div>
                 <h2>In diesen heil'gen Hallen</h2>
                 <small>from opera “Die Zauberflöte”</small>
             </div>
-            
             <div class="commentary">
-                모차르트의 오페라 &lt;마술피리&gt; 중 자라스트로의 아리아입니다. 서른이 넘은 나이, 처음 보았던 편입 시험부터 한국에서의 첫 무대, 독일 유학 입학시험과 수많은 유럽 극장의 오디션 현장에서, 이 곡은 언제나 저와 함께였습니다. 여러 나라의 다양한 프로덕션에서 ‘자라스트로’로 무대에 서며 지금의 커리어를 쌓아올 수 있었기에, 저의 음악 여정을 상징하는 이 곡을 첫 순서로 택했습니다. 타인을 향한 너그러움과 마음의 여유가 사라져가는 요즘, 이 곡이 전하는 자라스트로의 관용이 세상에 전해지기를 바랍니다.
-            </div>
-
-            <div class="lyrics-box">
-                <div class="lyrics-title">가사 해석</div>
-                <div class="lyrics-content">
-                    이 신성한 전당에서는 누구도 복수를 생각하지 않습니다.<br>
-                    누군가 길을 잃고 좌절하더라도, 사랑으로 다시 그를 올바른 길로 안내합니다.<br>
-                    그러면 그 사람은 친구의 손을 잡고 더 밝은 세상으로 나아갑니다.<br><br>
-                    이 신성한 벽 안에서는 인간은 인간으로서 상대를 사랑합니다.<br>
-                    그렇게 원수를 용서할 수 있기에, 배신과 혐오는 더 이상 발붙일 곳이 없습니다.<br>
-                    이 가르침을 기쁘게 받아들이지 못한다면, 그는 인간이라 불릴 자격이 없을 것입니다.
-                </div>
+                서른이 넘은 나이, 독일 유학 오디션부터 수많은 유럽 극장의 무대까지 언제나 저와 함께했던 곡입니다. 저의 커리어를 상징하는 '자라스트로'의 관용이 이 시대에 전해지길 바랍니다.
             </div>
         </div>
 
@@ -226,27 +189,46 @@
                 <h2>Leave me loathsome light</h2>
                 <small>from opera “Semele”</small>
             </div>
-            
             <div class="commentary">
-                헨델의 오페라 세멜레(Semele)에 나오는 잠의 신 솜누스(Somnus)의 아리아입니다. 연주자의 가족은 자신의 가장 큰 팬이며 동시에 가장 신랄한 비평가이기도 합니다. 그렇기에 많은 연주자들이 연주 후 가족의 반응에 민감하게 됩니다. 한동안 아내에게 연주 후에 확신에 찬 칭찬을 받지 못했던 기간이 있었는데, 이 곡을 연주했던 날에 아내의 칭찬이 지금까지의 어떤 연주 후에 들었던 칭찬보다 가장 진심으로 느껴졌었기에, 이 곡을 독창회에서 다시 한번 연주하기로 하였습니다. 성악가의 길을 곁에서 묵묵히 지지하며 지켜준 아내에게 감사의 마음을 전합니다.
+                가장 신랄한 비평가이자 팬인 아내에게 처음으로 진심 어린 칭찬을 받았던 곡입니다. 곁에서 묵묵히 지지해 준 아내에게 이 노래를 바칩니다.
             </div>
+        </div>
 
+        <div class="program-item">
+            <div class="program-header">
+                <div class="composer">Johannes Brahms</div>
+                <h2>Vier ernste Gesänge (네 개의 엄숙한 노래)</h2>
+            </div>
+            <div class="commentary">
+                민주주의를 위해 희생된 분들, 무너진 건물과 다리에서 떠난 분들, 그리고 세월호의 아이들... 그동안 마음속으로만 애도했던 그분들을 위해 처음으로 이 곡을 꺼내어 봅니다. 개인적으로 이별한 아버지와 장인어른, 동료들을 기리며 삶과 죽음의 의미를 되새깁니다.
+            </div>
             <div class="lyrics-box">
-                <div class="lyrics-title">가사 해석</div>
+                <div class="lyrics-title">가사 해석 중 발췌</div>
                 <div class="lyrics-content">
-                    끔찍한 빛이여, 나를 이대로 내버려다오.<br>
-                    고요한 밤이여, 나를 이대로 받아주오.<br>
-                    망각의 강 레테여, 어찌하여 그대는 더딘 물결을 멈추었는가?<br>
-                    다시 한번 나에게 속삭이듯 흘러, 나를 평온 속에 잠재워주오.
+                    <strong>1. 전도서 3장:</strong> 인간이나 짐승이나 죽으면 모두 한곳으로 갈 것이고, 먼지로부터 만들어졌으니 다시 먼지로 돌아갈 것이다.<br>
+                    <strong>3. 집회서 41장:</strong> 오 죽음이여, 그대는 쇠약하고 늙어 궁핍해진 근심 많은 자에게 얼마나 큰 위로가 되는가.<br>
+                    <strong>4. 고린도전서 13장:</strong> 지금은 믿음과 소망과 사랑이 우리에게 있으나, 그 가운데에 제일은 사랑일 것이다.
                 </div>
             </div>
         </div>
-    </section>
 
-    <footer>
-        <p>© 2026 Memoirs of a Bass. All rights reserved.</p>
-    </footer>
-</div>
+        <div class="program-item">
+            <div class="program-header">
+                <div class="composer">G. Rossini</div>
+                <h2>La calunnia</h2>
+                <small>from “Il barbiere di Siviglia”</small>
+            </div>
+            <div class="commentary">
+                유학 생활 끝에 극장에서 처음으로 맡게 된 배역 '바질리오'의 아리아입니다. 불안과 안도감이 교차하던 그 시절의 첫걸음을 기억하며 1부의 마지막 곡으로 선택했습니다.
+            </div>
+        </div>
 
-</body>
-</html>
+        <div class="intermission">INTERMISSION</div>
+
+        <div class="program-item">
+            <div class="program-header">
+                <div class="composer">Mikhail Glinka</div>
+                <h2>Сомнение (Doubt / 의혹)</h2>
+            </div>
+            <div class="commentary">
+                베이스는 로맨틱한 사랑 노래를 부를 기회가 적습니다. 제가 전하는 사랑은 햇살보다는
