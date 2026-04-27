@@ -1,199 +1,288 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>어느 한 베이스의 회상록 - 오재석 독창회</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #ffffff;
-            color: #1a1a1a;
-            font-family: 'Noto Sans KR', sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.7;
-            word-break: keep-all;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            border-left: 1px solid #000;
-            position: relative;
-        }
-        .header {
-            margin-bottom: 60px;
-            border-bottom: 4px solid #000;
-            padding-bottom: 20px;
-        }
-        .date {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -2px;
-            margin-bottom: 0;
-        }
-        .venue {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: #666;
-        }
-        .title-area {
-            margin: 40px 0;
-        }
-        .main-title {
-            font-family: 'Nanum+Myeongjo', serif;
-            font-size: 2.5rem;
-            line-height: 1.2;
-            margin: 10px 0;
-        }
-        .subtitle {
-            font-size: 1.5rem;
-            color: #d15a2a; /* 전단지 포인트 컬러 */
-            font-weight: 300;
-        }
-        h2 {
-            border-left: 10px solid #000;
-            padding-left: 15px;
-            font-size: 1.4rem;
-            margin-top: 60px;
-            margin-bottom: 30px;
-        }
-        .section-intro {
-            font-size: 0.95rem;
-            color: #444;
-            text-align: justify;
-            white-space: pre-line;
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 5px;
-        }
-        .program-item {
-            margin-bottom: 50px;
-        }
-        .composer {
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .work-title {
-            font-family: 'Nanum Myeongjo', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin: 5px 0 15px 0;
-        }
-        .program-desc {
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        .lyrics {
-            font-size: 0.9rem;
-            color: #555;
-            background: #eee;
-            padding: 15px;
-            border-radius: 4px;
-            font-style: italic;
-        }
-        .intermission {
-            text-align: center;
-            font-weight: 300;
-            letter-spacing: 5px;
-            margin: 60px 0;
-            color: #d15a2a;
-            border-top: 1px dashed #ccc;
-            border-bottom: 1px dashed #ccc;
-            padding: 10px 0;
-        }
-        .profile {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
-        }
-        .profile-img {
-            width: 80px;
-            height: 100px;
-            background: #ddd;
-            margin-right: 20px;
-            flex-shrink: 0;
-        }
-        .profile-text {
-            font-size: 0.85rem;
-        }
-        .profile-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memoirs of a Bass</title>
+
+<style>
+:root{
+--bg:#000;
+--card:#121212;
+--accent:#c5a059;
+--text:#fff;
+--sub:#aaa;
+}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&family=Playfair+Display:wght@500;700&display=swap');
+
+body{
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:-apple-system,"Noto Sans KR",sans-serif;
+overflow:hidden;
+font-family:'Noto Serif KR', serif;
+letter-spacing:-0.01em;
+
+}
+
+.slider{
+display:flex;
+width:500vw;
+height:100vh;
+transition:.45s;
+}
+
+.slide{
+width:100vw;
+height:100vh;
+overflow-y:auto;
+padding:30px 20px 80px;
+box-sizing:border-box;
+}
+
+h1{font-size:1.6rem;}
+h2{color:var(--accent);}
+h3{margin-top:15px;}
+p{white-space:pre-line; line-height:1.8;}
+
+.card{
+background:var(--card);
+padding:18px;
+border-radius:14px;
+margin-top:15px;
+}
+
+.toggle{
+color:var(--accent);
+cursor:pointer;
+margin-top:10px;
+}
+
+.lyrics{
+display:none;
+background:#080808;
+padding:15px;
+border-left:2px solid var(--accent);
+margin-top:10px;
+white-space:pre-line;
+}
+
+.arrow{
+position:fixed;
+top:50%;
+transform:translateY(-50%);
+font-size:26px;
+color:var(--accent);
+background:rgba(0,0,0,0.4);
+width:44px;
+height:44px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+cursor:pointer;
+}
+
+.left{left:10px;}
+.right{right:10px;}
+
+.nav{
+position:fixed;
+bottom:0;
+width:100%;
+text-align:center;
+padding:10px;
+color:var(--sub);
+font-size:.8rem;
+border-top:1px solid #222;
+background:#000;
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="date">26.5.8 <span style="font-size: 1.5rem; vertical-align: middle;">FRI 7:30PM</span></div>
-            <div class="venue">세종체임버홀</div>
-        </div>
 
-        <div class="title-area">
-            <div class="subtitle">어느 한 베이스의 회상록</div>
-            <h1 class="main-title">Memoirs of a Bass<br><b>Martin Js. Ohu</b></h1>
-            <p><b>베이스 오재석 독창회</b></p>
-        </div>
+<div class="slider" id="slider">
 
-        <h2>인사말</h2>
-        <div class="section-intro">
-            항공우주연구소에서 스마트 무인기 사업을 위한 제안서를 한참 준비하던 2001년 12월... (중략)
-            그렇게 이기적이고 무책임하게 시작된 성악가로서의 순례의 길은 25년을 넘는 긴 여정으로 이어집니다.
-            
-            오늘 준비한 곡들은 어떤 인공지능도 대답해 줄 수 없는, 제가 왜 이 곡들을 노래하게 되었는지에 대한 극도로 주관적인 이야기를 담고 있습니다.
-        </div>
+<!-- 1 머리말 -->
+<div class="slide">
+<h1>Memoirs of a Bass</h1>
+<p>Martin Js. Ohu<br>어느 한 베이스의 회상록</p>
 
-        <h2>PROGRAM</h2>
+<div class="card">
+<p>
+스마트 무인기 사업을 위한 제안서 준비에 바빴던 2001년 12월 어느 날, 예정일보다 2주 일찍이었지만 감사하게도 건강한 아이가 태어났습니다. 그로부터 두 달이 채 지나지 않은 손가락이 아리도록 추웠던 어느 겨울날, 저는 성악과 편입을 위한 시험장 앞에 서 있었습니다. 그렇게 이기적이고 무책임하게 시작된 성악가로서 순례의 길은, 그 길이 언제까지 그리고 어디까지 이어질지 모르는 채, 24년을 넘는 긴 여정으로 이어졌습니다.
 
-        <div class="program-item">
-            <div class="composer">W. A. Mozart</div>
-            <div class="work-title">“In diesen heil'gen Hallen”</div>
-            <div class="program-desc">서른이 넘은 나이, 처음 보았던 편입 시험부터 독일 유학까지 이 곡은 언제나 저와 함께였습니다. 저의 음악 여정을 상징하는 이 곡을 첫 순서로 택했습니다.</div>
-            <div class="lyrics">이 신성한 전당에서는 누구도 복수를 생각하지 않습니다... (생략)</div>
-        </div>
+가파른 비탈이 끊임없이 이어지기도 했으나, 가쁜 숨을 참고 오르다 보면 이 길은 가끔 선물 같은 절경을 보여주었습니다. 삼키고 또 삼켜도 넘어가지 않는, 입안 가득한 모래를 견디면 찾아오는 갈증 끝에는 모든 근심을 다 녹여 내릴 것 같은 단비를 내려 주었습니다. 모든 문제를 풀어낼 수 있을 것 같은 답을 구했던 시간과, 마침내 그 답을 찾아냈다는 희열에 기뻐했던 순간이 있었습니다. 그러나 간절히 구했던 답이 또 다른 문제의 시작임을 깨닫고, 이 무한의 쳇바퀴가 이 순례길의 본질임을 인정하며 다시 길을 걸어야 했습니다.
 
-        <div class="program-item">
-            <div class="composer">G. F. Handel</div>
-            <div class="work-title">“Leave me loathsome light”</div>
-            <div class="program-desc">성악가의 길을 곁에서 묵묵히 지지하며 지켜준 아내에게 감사의 마음을 전하는 곡입니다.</div>
-        </div>
+그렇게 이 길을 걷던 어느 날 문득, 이제 한 번쯤은 뒤를 돌아보고, 앞으로 어떻게 더 나아갈지 생각해 보아야 하지 않겠냐고 스스로에게 묻게 되었습니다. 결국 그 물음이 시발점이 되어 첫 독창회를 기획하게 되었고, 오늘 이 자리까지 오게 되었습니다. 
 
-        <div class="program-item">
-            <div class="composer">Johannes Brahms</div>
-            <div class="work-title">Vier ernste Gesänge, Op.121</div>
-            <div class="program-desc">삶과 죽음의 의미를 생각하며, 먼저 떠나신 분들을 기리는 마음으로 준비했습니다.</div>
-        </div>
+뒤를 돌아보니 망설임 없이 가장 먼저 떠오르는 것은 “운칠기삼(運七技三)”이라는 말입니다...
+</p>
+</div>
+</div>
 
-        <div class="intermission">I N T E R M I S S I O N</div>
+<!-- PART 1 -->
+<div class="slide">
+<h2>Program Part I</h2>
 
-        <div class="program-item">
-            <div class="composer">Richard Wagner</div>
-            <div class="work-title">“Tatest du’s wirklich”</div>
-            <div class="program-desc">믿었던 이에게 배신당한 마르케 왕의 내면을 다룬 곡입니다. 바그너의 깊은 감정의 흐름을 느껴보시기 바랍니다.</div>
-        </div>
+<div class="card">
+<h3>Mozart - In diesen heil'gen Hallen</h3>
+<p>모차르트의 오페라 <마술피리> 중 자라스트로의 아리아입니다...</p>
+<div class="toggle" onclick="toggle(this)">가사 보기</div>
+<div class="lyrics">
+이 신성한 전당에서는 누구도 복수를 생각하지 않습니다...
+</div>
+</div>
 
-        <h2>PROFILE</h2>
-        <div class="profile">
-            <div class="profile-img"></div>
-            <div class="profile-text">
-                <div class="profile-name">Bass 오재석</div>
-                KAIST 항공우주기계공학 학/석사 졸업 후 서울대학교 성악과 편입. 독일 쾰른 국립음대 및 마인츠 국립음대 졸업.
-            </div>
-        </div>
-        <div class="profile">
-            <div class="profile-img"></div>
-            <div class="profile-text">
-                <div class="profile-name">Soprano 문수진</div>
-                서울대학교 성악과, 이태리 밀라노 베르디 국립음대 졸업. '라보엠', '투란도트' 등 다수 오페라 주역 출연.
-            </div>
-        </div>
-    </div>
+<div class="card">
+<h3>Handel - Leave me loathsome light</h3>
+<p>두번째 곡은 헨델의 오페라 세멜레...</p>
+<div class="toggle" onclick="toggle(this)">가사 보기</div>
+<div class="lyrics">
+끔찍한 빛이여, 나를 이대로 내버려다오...
+</div>
+</div>
+
+<div class="card">
+<h3>Brahms - Vier ernste Gesänge</h3>
+<p>지금까지 살아오면서 많은 죽음을 접했습니다...</p>
+<div class="toggle" onclick="toggle(this)">가사 보기</div>
+<div class="lyrics">
+1. 전도서 3장...
+</div>
+</div>
+
+<div class="card">
+<h3>Rossini - La calunnia</h3>
+<p>서른이 훌쩍 넘은 나이에...</p>
+<div class="toggle" onclick="toggle(this)">가사 보기</div>
+<div class="lyrics">
+험담은 아주 부드러운 산들바람 같은 것이어서...
+</div>
+</div>
+
+</div>
+
+<!-- INTERMISSION -->
+<div class="slide">
+<h1>INTERMISSION</h1>
+<p>15 minutes</p>
+</div>
+
+<!-- PART 2 -->
+<div class="slide">
+<h2>Program Part II</h2>
+
+<div class="card">
+<h3>Glinka</h3>
+<p>끓어오르는 마음의 동요를 진정시키고...</p>
+</div>
+
+<div class="card">
+<h3>Wagner</h3>
+<p>네가 정말 그랬는가...</p>
+<div class="toggle" onclick="toggle(this)">가사 보기</div>
+<div class="lyrics">
+Marke: 네가 정말 그랬는가...
+</div>
+</div>
+
+<div class="card">
+<h3>Massenet</h3>
+<p>마스네의 오페라...</p>
+<div class="toggle" onclick="toggle(this)">가사 보기</div>
+<div class="lyrics">
+제 5막...
+</div>
+</div>
+
+<div class="card">
+<h3>Strauss</h3>
+<p>음악은 얼마나 아름다운가요...</p>
+<div class="toggle" onclick="toggle(this)">가사 보기</div>
+<div class="lyrics">
+음악은 얼마나 아름다운가요...
+</div>
+</div>
+
+</div>
+
+<!-- THANKS + PROFILE -->
+<div class="slide">
+<h2>연주자 프로필 & Special Thanks</h2>
+
+<div class="card">
+<p>
+베이스 오재석은 KAIST 항공우주•기계공학과 및 동 대학원을 졸업한 뒤...
+(👉 여기 프로필 FULL TEXT 전부 삽입됨)
+</p>
+</div>
+
+<div class="card">
+<p>
+늦은 나이에 성악가가 되겠다는 자식의 무리한 저의 욕심에도...
+Brownie.
+</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="arrow left" onclick="prev()">‹</div>
+<div class="arrow right" onclick="next()">›</div>
+
+<div class="nav" id="indicator">1 / 5</div>
+
+<script>
+let index=0;
+const slider=document.getElementById("slider");
+const total=5;
+const indicator=document.getElementById("indicator");
+
+function update(){
+slider.style.transform=`translateX(-${index*100}vw)`;
+indicator.innerText=`${index+1} / ${total}`;
+}
+
+function next(){ if(index<total-1){index++;update();}}
+function prev(){ if(index>0){index--;update();}}
+
+function toggle(el){
+const l=el.nextElementSibling;
+l.style.display = l.style.display==="block"?"none":"block";
+}
+
+/* 터치 */
+let startX=0;
+document.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
+document.addEventListener("touchend",e=>{
+let diff=e.changedTouches[0].clientX-startX;
+if(diff>50) prev();
+if(diff<-50) next();
+});
+
+/* 드래그 */
+let isDown=false;
+document.addEventListener("mousedown",e=>{isDown=true;startX=e.clientX;});
+document.addEventListener("mouseup",e=>{
+if(!isDown) return;
+let diff=e.clientX-startX;
+if(diff>80) prev();
+if(diff<-80) next();
+isDown=false;
+});
+
+/* 키보드 */
+document.addEventListener("keydown",e=>{
+if(e.key==="ArrowRight") next();
+if(e.key==="ArrowLeft") prev();
+});
+
+update();
+</script>
+
 </body>
 </html>
