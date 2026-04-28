@@ -14,19 +14,20 @@
 --sub:#aaa;
 }
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
 body{
 margin:0;
 background:var(--bg);
 color:var(--text);
 font-family:'Noto Serif KR', serif;
-overflow:hidden;
+overflow:auto;
 }
 
 /* 슬라이더 */
 .slider{
 display:flex;
-height:100vh;
+min-height:100vh;
 transition:transform .45s ease;
 }
 
@@ -34,7 +35,9 @@ transition:transform .45s ease;
 .slide{
 width:100vw;
 height:100vh;
-overflow-y:auto;
+/* overflow-y:auto; ❌ */
+overflow:visible; /* ⭕ */
+}
 padding:30px 20px 80px;
 box-sizing:border-box;
 }
