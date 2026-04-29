@@ -26,17 +26,25 @@ overflow:hidden;
 background:var(--bg);
 color:var(--text);
 font-family:'Noto Serif KR', serif;
+
+/*touch-action: pan-y;
+/*min-height: 100dvh;
+
 }
-    
 /* 헤더 */
 .header{
 text-align:center;
 margin-top:40px;
 }
-.sub{color:var(--accent);letter-spacing:3px;}
-.subtitle{color:var(--accent);}
+.sub{color:var(--accent);letter-spacing:3px;margin: 6px 0;}
+.sub_accent{color: #38BDF8;letter-spacing:3px;margin: 6px 0;}
+.subtitle{color:var(--accent);margin: 8px 0;}
+.subtitle_name{color:var(--sub);margin: 8px 0;}
 .info{color:var(--sub);}
-
+.text{color:#fff;}
+.highlight{color : #38BDF8;}
+    
+    
 /* 슬라이더 */
 .slider{
 display:flex;
@@ -48,8 +56,8 @@ transition:transform .45s ease;
 /* 슬라이드 */
 .slide{
 width:100vw;
-padding:30px 20px 80px;
 min-height:100vh;
+padding:30px 20px 80px;
 overflow-y:auto;
 -webkit-overflow-scrolling: touch;
 padding-top: calc(30px + env(safe-area-inset-top));
@@ -139,6 +147,7 @@ font-size:.8rem;
 border-top:1px solid #222;
 background:#000;
 }
+    
 .toggle{
 color:#c5a059;
 margin-top:10px;
@@ -153,9 +162,14 @@ transition: opacity .2s ease;
 .toggle:active{
 opacity:0.6;
 }
-   
 
-
+.divider{
+border: none;
+height: 3px;
+background: rgba(197,160,89,0.3); /* 골드톤 */
+margin: 0px 0;
+}
+    
     
 </style>
 </head>
@@ -165,14 +179,21 @@ opacity:0.6;
 <div class="slider" id="slider">
 
 
-<!-- 0 -->
 <div class="slide">
 <div class="header">
 <div class="sub">MEMOIRS OF A BASS</div>
-<h1>Martin Js. Ohu</h1>
+<div class="sub">어느 한 베이스의 회상록</div><BR> <BR> 
+<h1>Bass Martin Js. Ohu</h1>
 <h1>베이스 오재석 독창회</h1>
-<div class="subtitle">어느 한 베이스의 회상록</div>
-<div class="info">2026.05.08 · Sejong Chamber Hall</div>
+<BR>
+<div class="sub_accent">with</div>
+<div class="subtitle"> 피아노 <span class="text"> 김신애 </span></div>
+<div class="subtitle"> 첼로 <span class="text"> 정광준 </span></div>
+<div class="subtitle"> 소프라노 <span class="text"> 문수진 </span></div>
+<div class="subtitle"> 배우 <span class="text"> 김해중 </span></div>
+<div class="subtitle"> <span class="text"> 예술무대산 </span></div>
+   <BR><BR><BR> 
+<div class="info">2026.05.08 · Sejong Chamber Hall</div> 
 </div>
 </div>
 
@@ -217,22 +238,43 @@ opacity:0.6;
     
 <!-- 3 -->
 <div class="slide">
-<h2>Program Part I</h2>
+<h2>Program Part I-1</h2>
 
 <div class="card">
-<h3>In diesen heil'gen Hallen </h3>
-<h4>W.A. Mozart,“Die Zauberflöte”</h4>
+<h3>1. In diesen heil'gen Hallen </h3>
+<div class="subtitle"> <span class="info"> W.A. Mozart,“Die Zauberflöte”</span></div>
 <div class="toggle" onclick="toggle(this)">가사 보기</div>
-<div class="lyrics">이 신성한 전당에서는 누구도 복수를 생각하지 않습니다. 누군가 길을 잃고 좌절하더라도, 다시 사랑으로 그를 올바른 길로 안내합니다.그러면 그는 친구의 손을 잡고 더 나은 세상으로 나아갑니다. 
+<div class="lyrics">이 신성한 전당에서는 누구도 복수를 생각하지 않습니다. 누군가 길을 잃고 좌절하더라도, 다시 사랑으로 그를 올바른 길로 안내합니다.그러면 그는 친구의 손을 잡고 더 나은 세상으로 나아갑니다. <br><br>
 
 이 신성한 벽 안에서는 인간은 인간으로서 상대를 사랑합니다. 그렇게 원수를 용서할 수 있기에, 배신과 혐오는 더 이상 발붙일 곳이 없습니다. 이 가르침을 기쁘게 받아들이지 못한다면, 그는 인간이라 불릴 자격이 없을 것입니다.</div>
 
-<div class="description"> 모차르트의 오페라 &lt;마술피리&gt; 중 자라스트로의 아리아입니다. <p></p>
+<div class="description"> 모차르트의 오페라 &lt;마술피리&gt; 중 자라스트로의 아리아입니다. <br><br>
 
 서른이 넘은 나이, 처음 보았던 편입 시험부터 한국에서의 첫 오페라 무대, 독일 유학 시절 여러입 시험과 수많은 유럽 극장의 오디션 현장에서, 이 곡은 언제나 저와 함께했습니다. 여러 나라의 다양한 프로덕션에서 ‘자라스트로’로 무대에 서며 지금의 커리어를 쌓아올 수 있었기에, 저의 음악 여정을 상징하는 이 곡을 독창회의 첫 순서로 택했습니다. <p></p>
 
 타인을 향한 너그러움과 마음의 여유가 사라져가는 요즘, 이 곡이 전하는 자라스트로의 관대한 마음이 세상에 전해지기를 바랍니다.
 </div>
+
+<hr class="divider">
+
+<h3>Leave me loathsome light</h3>
+<div class="subtitle"> <span class="info"> G. F. Handel, “Semele"</span></div>
+<div class="toggle" onclick="toggle(this)">가사 보기</div>
+    <div class="lyrics">끔찍한 빛이여, 나를 이대로 내버려다오.
+    고요한 밤이여, 나를 이대로 받아주오.<br><br>
+    망각의 강 레테여, 어찌하여 그대는 더딘 물결을 멈추었는가?<br><br>
+    다시 한번 나에게 속삭이듯 흘러, 나를 평온 속에 잠재워다오.
+    </div>
+    
+    <div class="description"> 두번째 곡은 헨델의 오페라 세멜레(Semele)에 나오는 잠의 신 솜누스(Somnus)의 아리아입니다. 
+    연주자에게 가족은 자신의 가장 큰 팬인 동시에 가장 신랄한 비평가입니다. 
+    그렇기에 많은 연주자들이 연주 후 가족의 반응에 민감하게 되는 경우가 많습니다. <br><br>
+    한동안 아내에게 연주 후에 확신에 찬 칭찬을 받지 못했던 기간이 있었습니다. 
+    그러다가 이 곡을 연주하게 되었는데, 이 곡을 연주한 날에대한 아내의 칭찬이 지금까지의 어떤 연주 후에 들었던 칭찬보다 가장 
+    진심으로 느껴졌기에, 이 곡을 독창회에서 다시 한번 연주하기로 하였습니다. 공학자와 결혼하여 성악가의 아내로 살아야 했던 
+    그 고난의 길을 곁에서 묵묵히 지지하며 지켜준 아내에게 감사의 마음을 전합니다.
+    </div>
+    
 </div>
 </div>
 
@@ -276,7 +318,7 @@ opacity:0.6;
 </div>
 </div>
 
-</div>
+
 
 
 </div>
