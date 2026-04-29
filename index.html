@@ -6,6 +6,7 @@
 <!-- ✅ 확대 안정 + 크로스 브라우저 -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
+
 <title>Memoirs of a Bass</title>
 
 <style>
@@ -24,6 +25,7 @@ color:var(--text);
 font-family:'Noto Serif KR', serif;
 overflow:hidden;
 touch-action: pan-y;
+min-height: 100dvh;
 }
 
 /* 슬라이더 */
@@ -36,10 +38,17 @@ transition:transform .45s ease;
 
 /* 슬라이드 */
 .slide{
-width:100vw;
+/*width:100vw;
 min-height:100vh;
 padding:30px 20px 80px;
+box-sizing:border-box;*/
+min-height:100vh;
+padding-top: calc(30px + env(safe-area-inset-top));
+padding-bottom: calc(80px + env(safe-area-inset-bottom));
+padding-left:20px;
+padding-right:20px;
 box-sizing:border-box;
+    
 }
 
 /* 타이포 */
